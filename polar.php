@@ -3,11 +3,24 @@
 		<meta charset = "UTF-8"><title></title>
 	</head>
 	<body>
-		<img src = "http://www.studfiles.ru/html/2706/22/html_G8_dFlsQr0.lKDI/htmlconvd-ebTmxT_html_m6e4b5fa3.gif" alt = "polar">
+		<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Polar_coordinates.svg/250px-Polar_coordinates.svg.png" alt = "polar">
 		<p><br></p>
 		<form method = "GET">
-			<input type = "text" name = "firstArg" value = "" placeholder = "Координата Х">
-			<input type = "text" name = "secondArg" value = "" placeholder = "Координата Y">
+		    <p>Введите координату x
+			<input type = "text" name = "firstArg" value = "<?php
+			if (isset($_GET['firstArg'])){
+					echo htmlspecialchars($_GET['firstArg']);
+				}
+				?>">
+			</p>
+			<p>Введите координату y 
+			<input type = "text" name = "secondArg" value = "<?php
+			if (isset($_GET['secondArg'])){
+					echo htmlspecialchars($_GET['secondArg']);
+				}
+				?>">
+			</p>
+			
 			<input type = "submit" name = "compute" value = "Рассчитать">
 		</form>
 			<?php
@@ -25,11 +38,16 @@
 						}
 						else
 						{
-							$vector_length = sqrt(pow(intval($_GET['firstArg']),2) + pow(intval($_GET['secondArg']), 2));
-							$arсtan_angle = rad2deg(atan((intval($_GET['secondArg'])) / (intval($_GET['firstArg']))));
-							$output = number_format($vector_length, 2, ',', '');
-							echo $output. "<br/>";
-							echo $arсtan_angle. "<br/>";
+							if (($_GET['secondArg'])!=0) {
+								$vector_length = sqrt(pow(intval($_GET['firstArg']),2) + pow(intval($_GET['secondArg']), 2));
+								$arсtan_angle = rad2deg(atan((intval($_GET['secondArg'])) / (intval($_GET['firstArg']))));
+								$output = number_format($vector_length, 2, ',', '');
+								echo  'Длина вектора OP: '.$output. "<br/>";
+								echo 'Полярный угол Ф: '.$arсtan_angle. "<br/>";
+							}
+							else {
+								echo "Вектор ОР и угол Ф равны 0";
+							}
 						}	
 					}
 				}
