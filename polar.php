@@ -36,14 +36,22 @@
 						{
 							echo("<p>Введены нечисловые данные!!!<p>");
 						}
-						else
+						elseif ((($_GET['firstArg']) == 0) or  (($_GET['secondArg']) == 0))
+						{
+							$vector_length = sqrt(pow(intval($_GET['firstArg']),2) + pow(intval($_GET['secondArg']), 2));
+						$arсtan_angle='0';
+								$output = number_format($vector_length, 2, ',', '');
+								echo  'Длина вектора OP: '.$output. "<br/>";
+								echo 'Полярный угол Ф (градусы): '.$arсtan_angle. "<br/>";
+						} 
+						else	
 						{
 							if (($_GET['secondArg'])!=0) {
 								$vector_length = sqrt(pow(intval($_GET['firstArg']),2) + pow(intval($_GET['secondArg']), 2));
 								$arсtan_angle = rad2deg(atan((intval($_GET['secondArg'])) / (intval($_GET['firstArg']))));
 								$output = number_format($vector_length, 2, ',', '');
 								echo  'Длина вектора OP: '.$output. "<br/>";
-								echo 'Полярный угол Ф: '.$arсtan_angle. "<br/>";
+								echo 'Полярный угол Ф (градусы): '.$arсtan_angle. "<br/>";
 							}
 							else {
 								echo "Вектор ОР и угол Ф равны 0";
